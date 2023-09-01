@@ -27,20 +27,20 @@ public class ServicoClientes {
 
     @Transactional
     public void registerUser(ClientesPost request) {
-        // Validate the email format using PasswordUtils
+        // Validando o email pelo PasswordUtils
         if (!PasswordUtils.isValidEmail(request.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Email");
         }
 
-        // Generate password salt and hash using PasswordUtils
+        // Gerando o hash e salt
         byte[] passwordSalt = PasswordUtils.generateSalt();
         byte[] passwordHash = PasswordUtils.generateHash(request.getPassword(), passwordSalt);
 
-        // Encode the salt and hash as Base64 strings
+        // Codificando usando Base64
         String passwordHashString = PasswordUtils.encodeBase64(passwordHash);
         String passwordSaltString = PasswordUtils.encodeBase64(passwordSalt);
 
-        // Create and save the Clientes entity
+        // Criando e salvando o cliente na db
         Clientes clientes = new Clientes();
         clientes.setNome(request.getNome());
         clientes.setSobrenome(request.getSobrenome());
@@ -89,7 +89,18 @@ public class ServicoClientes {
     }
 
     public Optional<Clientes> findClientsByEmail(String email) {
-        // Retrieve clients by email from the repository
+        // Pegando os clientes do repositório
         return clientesRepository.findByEmail(email);
+    }
+
+    @Transactional
+    public void updateClienteEmail(Long userId, String newEmail) {
+        // encontrar o cliente pelo Id
+        Clientes clientes = clientesRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID " + userId));
+
+        // fazendo o update do email do cliente...
+        clientes.setEmail(newEmail);
+        clientesRepository.save(clientes);
     }
 }

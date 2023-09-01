@@ -22,14 +22,12 @@ public class ClientesController {
 
     @PostMapping("/registrar")
     public ResponseEntity<ClientesPost> registrarCliente(@RequestBody ClientesPost request) {
-        // Delegate registration logic to UserService
         servicoClientes.registerUser(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> loginCliente(@RequestBody ClientesPost request) {
-        // Delegate login logic to UserService
         servicoClientes.loginUser(request);
         return ResponseEntity.ok("Login successful");
     }
@@ -48,5 +46,11 @@ public class ClientesController {
     @GetMapping("/encontre/{email}")
     public Optional<Clientes> encontreClientePorEmail(@PathVariable String email) {
         return servicoClientes.findClientsByEmail(email);
+    }
+
+    @PutMapping("/update-email/{IdCliente}")
+    public ResponseEntity<String> updateEmail(@PathVariable Long IdCliente, @RequestParam String newEmail) {
+        servicoClientes.updateClienteEmail(IdCliente, newEmail);
+        return ResponseEntity.ok("Email updated successfully");
     }
 }
