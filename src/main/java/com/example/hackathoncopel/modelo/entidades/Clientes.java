@@ -29,10 +29,21 @@ public class Clientes {
     @Column(name = "senha_hash")
     private byte[] senha_hash;
 
+    @Transient
+    private String password;
+
     @OneToMany(cascade = CascadeType.ALL, targetEntity = InformacoesConta.class)
     @JoinColumn(name = "ClienteId", referencedColumnName = "IdCliente")
     @JsonManagedReference
     private Set<InformacoesConta> informacoesConta;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getIdCliente() {
         return idCliente;
