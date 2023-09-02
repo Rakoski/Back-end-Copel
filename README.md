@@ -49,12 +49,59 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 - **Método:** `POST`
 - **Endpoint:** `/api/aluno/login`
 - **Corpo da requisição:**
-- ```json
+  ```json
     {
       "email": "neymarjr@gmail.com",
       "password": "123456"
     }
-- **Resposta de sucesso: "Login sucessfull" 200 OK**
+- **Resposta de sucesso: "Login sucessfull" 200 OK
+
+### Encontrar Cliente por Email
+
+- **Descrição:** Retorna informações de um cliente com base no endereço de e-mail.
+- **Método:** GET
+- **Endpoint:** /api/aluno/encontre/{email}
+- **Parâmetros de URL:** email (e-mail do cliente a ser buscado)
+- **Resposta de sucesso:** 
+  ```json
+    {
+      "idCliente": 2,
+      "nome": "Neymar",
+      "sobrenome": "Jr",
+      "email": "neymarjr@gmail.com",
+      "senha_salt": "Z2NZU3J2OUtsYlZtcmpjbnRUWFBFdz09",
+      "senha_hash": "bU15S0N6Q0Zjbms5SWNmWWVSK1FjQWJUSEp1YkhUMlFJeERDUjJtcDhtZ3BLUWdrYStrUlo1VzZ5cUFGWmx3TElEc2VOZzNxSG5ZNTQ2aGhnS0VTemc9PQ==",
+      "password": null,
+      "conta": [],
+      "informacoesConta": []
+    }
+- **Resposta de erro:** 404 Not Found (se o cliente não for encontrado)
+
+### Atualizar Email do Cliente
+
+- **Descrição:** Atualiza o endereço de e-mail de um cliente existente.
+- **Método:** PUT
+- **Endpoint:** /api/aluno/update-email/{IdCliente}/{newEmail}
+- **Parâmetros de URL:** IdCliente (ID do cliente a ser atualizado), newEmail (email para qual será atualizado)
+- **Parâmetros de Consulta:** newEmail (novo endereço de e-mail a ser definido)
+- **Resposta de sucesso:** "Email updated successfully" 200 OK
+- **Resposta de erro:** 404 Not Found (se o cliente não for encontrado)
+
+### Pegar informações do cliente por ID
+
+- **Descrição:** Retorna informações de um cliente com base no ID.
+- **Método:** GET
+- **Endpoint:** /api/aluno/cliente_info/{IdCliente}
+- **Parâmetros de URL:** IdCliente (ID do cliente a ser buscado)
+- **Resposta de sucesso:**
+  ```json
+    {
+      "nome": "Neymar",
+      "sobrenome": "Jr",
+      "email": "neymarjr@gmail.com"
+    }
+
+- **Resposta de erro:**
 
 ## Contribuição
 
