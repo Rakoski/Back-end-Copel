@@ -101,8 +101,6 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
       "email": "neymarjr@gmail.com"
     }
 
-- **Resposta de erro:**
-
 ## Contribuição
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para enviar pull requests ou relatar problemas na seção de issues.
