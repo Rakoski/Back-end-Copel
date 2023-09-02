@@ -29,7 +29,32 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 
 ## API Endpoints
 
-- `/api/login` os endpoints ainda serão configurados e adicionados aqui de acordo com a necessidade do projeto
+### Registrar Cliente
+- **Descrição:** Registra um novo cliente.
+- **Método:** `POST`
+- **Endpoint:** `/api/aluno/registrar`
+- **Corpo da Requisição:**
+  ```json
+  {
+    "nome": "Neymar",
+    "sobrenome": "Jr",
+    "email": "neymarjr@gmail.com",
+    "password": "123456"
+  }
+  ```
+- **Resposta de sucesso: 200 OK**
+
+### Login Cliente 
+- **Descrição:** Autoriza um cliente já registrado.
+- **Método:** `POST`
+- **Endpoint:** `/api/aluno/login`
+- **Corpo da requisição:**
+- ```json
+    {
+      "email": "neymarjr@gmail.com",
+      "password": "123456"
+    }
+- **Resposta de sucesso: "Login sucessfull" 200 OK**
 
 ## Contribuição
 
