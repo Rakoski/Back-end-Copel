@@ -1,17 +1,16 @@
 package com.example.hackathoncopel.modelo.entidades;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "clientes")
 public class ClientesPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdCliente")
+    @Column(name = "id_cliente")
     private Long idCliente;
 
     @Column(name = "nome")
@@ -29,9 +28,20 @@ public class ClientesPost {
     @Column(name = "senha_hash")
     private byte[] senha_hash;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = InformacoesConta.class)
-    @JoinColumn(name = "ClienteId", referencedColumnName = "IdCliente")
-    private Set<InformacoesConta> informacoesConta;
+    @Transient
+    private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Conta.class)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
+    private Set<Conta> conta;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getIdCliente() {
         return idCliente;
@@ -81,11 +91,11 @@ public class ClientesPost {
         this.senha_hash = senha_hash;
     }
 
-    public Set<InformacoesConta> getInformacoesConta() {
-        return informacoesConta;
+    public Set<Conta> getInformacoesConta() {
+        return conta;
     }
 
-    public void setInformacoesConta(Set<InformacoesConta> informacoesConta) {
-        this.informacoesConta = informacoesConta;
+    public void setInformacoesConta(Set<Conta> conta) {
+        this.conta = conta;
     }
 }

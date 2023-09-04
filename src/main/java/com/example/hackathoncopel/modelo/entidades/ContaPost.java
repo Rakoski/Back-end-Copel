@@ -1,35 +1,43 @@
 package com.example.hackathoncopel.modelo.entidades;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "InformacoesConta")
-public class InformacoesConta {
+@Table(name = "conta")
+public class ContaPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdInformacoesConta")
+    @Column(name = "id_conta")
     private Long IdInformacoesConta;
 
-    @Column(name = "ClienteId")
-    @JsonBackReference
+    @Column(name = "cliente_id")
     private Long ClienteId;
 
     @Column(name = "valor_a_pagar")
     private BigDecimal ValorAPagar;
-
-    @Column(name = "data_de_emissao")
-    private Date DataDeEmissao;
 
     @Column(name = "data_de_vencimento")
     private Date DataDeVencimento;
 
     @Column(name = "status_pagamento")
     private String StatusPagamento;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = KilowattsRecebidosPost.class)
+    @JoinColumn(name = "conta_id", referencedColumnName = "id_conta")
+    private Set<KilowattsRecebidosPost> kilowattsRecebidosPosts;
+
+    public Set<KilowattsRecebidosPost> getKilowattsRecebidosPosts() {
+        return kilowattsRecebidosPosts;
+    }
+
+    public void setKilowattsRecebidosPosts(Set<KilowattsRecebidosPost> kilowattsRecebidosPosts) {
+        this.kilowattsRecebidosPosts = kilowattsRecebidosPosts;
+    }
 
     public Long getIdInformacoesConta() {
         return IdInformacoesConta;
@@ -53,14 +61,6 @@ public class InformacoesConta {
 
     public void setValorAPagar(BigDecimal valorAPagar) {
         ValorAPagar = valorAPagar;
-    }
-
-    public Date getDataDeEmissao() {
-        return DataDeEmissao;
-    }
-
-    public void setDataDeEmissao(Date dataDeEmissao) {
-        DataDeEmissao = dataDeEmissao;
     }
 
     public Date getDataDeVencimento() {
