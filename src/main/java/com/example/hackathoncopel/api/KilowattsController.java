@@ -4,9 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/InformacoesConta")
-public class InformacoesContaController {
-
-
-
+@RequestMapping("/api/kilowatts")
+public class KilowattsController {
 }

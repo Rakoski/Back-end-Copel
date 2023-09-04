@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "clientes")
 public class Clientes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdCliente")
+    @Column(name = "id_cliente")
     private Long idCliente;
 
     @Column(name = "nome")
@@ -32,10 +32,10 @@ public class Clientes {
     @Transient
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = InformacoesConta.class)
-    @JoinColumn(name = "ClienteId", referencedColumnName = "IdCliente")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Conta.class)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
     @JsonManagedReference
-    private Set<InformacoesConta> informacoesConta;
+    private Set<Conta> conta;
 
     public String getPassword() {
         return password;
@@ -93,11 +93,11 @@ public class Clientes {
         this.senha_hash = senha_hash;
     }
 
-    public Set<InformacoesConta> getInformacoesConta() {
-        return informacoesConta;
+    public Set<Conta> getInformacoesConta() {
+        return conta;
     }
 
-    public void setInformacoesConta(Set<InformacoesConta> informacoesConta) {
-        this.informacoesConta = informacoesConta;
+    public void setInformacoesConta(Set<Conta> conta) {
+        this.conta = conta;
     }
 }

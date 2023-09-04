@@ -26,10 +26,10 @@ public class ServicoClientes {
     }
 
     @Transactional
-    public void registerUser(ClientesPost request) {
+    public void registrarCliente(ClientesPost request) {
         // Validando o email pelo PasswordUtils
         if (!PasswordUtils.isValidEmail(request.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Email");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email inválido!");
         }
 
         // Gerando o hash e salt

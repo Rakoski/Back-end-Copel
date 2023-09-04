@@ -5,30 +5,41 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "InformacoesConta")
-public class InformacoesContaPost {
+@Table(name = "conta")
+public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdInformacoesConta")
+    @Column(name = "id_conta")
     private Long IdInformacoesConta;
 
-    @Column(name = "ClienteId")
+    @Column(name = "cliente_id")
+    @JsonBackReference
     private Long ClienteId;
 
     @Column(name = "valor_a_pagar")
     private BigDecimal ValorAPagar;
-
-    @Column(name = "data_de_emissao")
-    private Date DataDeEmissao;
 
     @Column(name = "data_de_vencimento")
     private Date DataDeVencimento;
 
     @Column(name = "status_pagamento")
     private String StatusPagamento;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = KilowattsRecebidos.class)
+    @JoinColumn(name = "conta_id", referencedColumnName = "id_conta")
+    private Set<KilowattsRecebidos> kilowattsRecebidos;
+
+    public Set<KilowattsRecebidos> getKilowattsRecebidos() {
+        return kilowattsRecebidos;
+    }
+
+    public void setKilowattsRecebidos(Set<KilowattsRecebidos> kilowattsRecebidos) {
+        this.kilowattsRecebidos = kilowattsRecebidos;
+    }
 
     public Long getIdInformacoesConta() {
         return IdInformacoesConta;
@@ -52,14 +63,6 @@ public class InformacoesContaPost {
 
     public void setValorAPagar(BigDecimal valorAPagar) {
         ValorAPagar = valorAPagar;
-    }
-
-    public Date getDataDeEmissao() {
-        return DataDeEmissao;
-    }
-
-    public void setDataDeEmissao(Date dataDeEmissao) {
-        DataDeEmissao = dataDeEmissao;
     }
 
     public Date getDataDeVencimento() {
