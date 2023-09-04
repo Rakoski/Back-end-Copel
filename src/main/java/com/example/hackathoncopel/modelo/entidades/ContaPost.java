@@ -1,5 +1,6 @@
 package com.example.hackathoncopel.modelo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -13,7 +14,7 @@ public class ContaPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private Long IdInformacoesConta;
+    private Long ContaId;
 
     @Column(name = "cliente_id")
     private Long ClienteId;
@@ -27,32 +28,35 @@ public class ContaPost {
     @Column(name = "status_pagamento")
     private String StatusPagamento;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = KilowattsRecebidosPost.class)
+    @Column(name = "kilowatts_hora")
+    private int KilowattsHora;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = KilowattsRecebidos.class)
     @JoinColumn(name = "conta_id", referencedColumnName = "id_conta")
-    private Set<KilowattsRecebidosPost> kilowattsRecebidosPosts;
+    private Set<KilowattsRecebidos> kilowattsRecebidos;
 
-    public Set<KilowattsRecebidosPost> getKilowattsRecebidosPosts() {
-        return kilowattsRecebidosPosts;
+    public Set<KilowattsRecebidos> getKilowattsRecebidos() {
+        return kilowattsRecebidos;
     }
 
-    public void setKilowattsRecebidosPosts(Set<KilowattsRecebidosPost> kilowattsRecebidosPosts) {
-        this.kilowattsRecebidosPosts = kilowattsRecebidosPosts;
+    public void setKilowattsRecebidos(Set<KilowattsRecebidos> kilowattsRecebidos) {
+        this.kilowattsRecebidos = kilowattsRecebidos;
     }
 
-    public Long getIdInformacoesConta() {
-        return IdInformacoesConta;
-    }
-
-    public void setIdInformacoesConta(Long idInformacoesConta) {
-        IdInformacoesConta = idInformacoesConta;
-    }
-
-    public Long getClienteId() {
+    public Long getCliente() {
         return ClienteId;
     }
 
-    public void setClienteId(Long clienteId) {
+    public void setCliente(Long clienteId) {
         ClienteId = clienteId;
+    }
+
+    public Long getIdConta() {
+        return ContaId;
+    }
+
+    public void setIdInformacoesConta(Long idConta) {
+        ContaId = idConta;
     }
 
     public BigDecimal getValorAPagar() {
@@ -77,5 +81,21 @@ public class ContaPost {
 
     public void setStatusPagamento(String statusPagamento) {
         StatusPagamento = statusPagamento;
+    }
+
+    public Long getClienteId() {
+        return ClienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        ClienteId = clienteId;
+    }
+
+    public int getKilowattsHora() {
+        return KilowattsHora;
+    }
+
+    public void setKilowattsHora(int kilowattsHora) {
+        KilowattsHora = kilowattsHora;
     }
 }

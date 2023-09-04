@@ -14,7 +14,7 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private Long IdInformacoesConta;
+    private Long ContaId;
 
     @Column(name = "cliente_id")
     @JsonBackReference
@@ -29,6 +29,9 @@ public class Conta {
     @Column(name = "status_pagamento")
     private String StatusPagamento;
 
+    @Column(name = "kilowatts_hora")
+    private int KilowattsHora;
+
     @OneToMany(cascade = CascadeType.ALL, targetEntity = KilowattsRecebidos.class)
     @JoinColumn(name = "conta_id", referencedColumnName = "id_conta")
     private Set<KilowattsRecebidos> kilowattsRecebidos;
@@ -41,20 +44,20 @@ public class Conta {
         this.kilowattsRecebidos = kilowattsRecebidos;
     }
 
-    public Long getIdInformacoesConta() {
-        return IdInformacoesConta;
-    }
-
-    public void setIdInformacoesConta(Long idInformacoesConta) {
-        IdInformacoesConta = idInformacoesConta;
-    }
-
-    public Long getClienteId() {
+    public Long getCliente() {
         return ClienteId;
     }
 
-    public void setClienteId(Long clienteId) {
+    public void setCliente(Long clienteId) {
         ClienteId = clienteId;
+    }
+
+    public Long getIdInformacoesConta() {
+        return ContaId;
+    }
+
+    public void setIdInformacoesConta(Long contaId) {
+        ContaId = contaId;
     }
 
     public BigDecimal getValorAPagar() {
@@ -79,5 +82,21 @@ public class Conta {
 
     public void setStatusPagamento(String statusPagamento) {
         StatusPagamento = statusPagamento;
+    }
+
+    public Long getClienteId() {
+        return ClienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        ClienteId = clienteId;
+    }
+
+    public int getKilowattsHora() {
+        return KilowattsHora;
+    }
+
+    public void setKilowattsHora(int kilowattsHora) {
+        KilowattsHora = kilowattsHora;
     }
 }

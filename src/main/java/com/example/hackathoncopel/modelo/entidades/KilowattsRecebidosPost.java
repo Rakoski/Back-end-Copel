@@ -15,7 +15,6 @@ public class KilowattsRecebidosPost {
     private Long IdKilowatts;
 
     @Column(name = "conta_id")
-    @JsonBackReference
     private Long ContaId;
 
     @Column(name = "kilowatts_pegos")
