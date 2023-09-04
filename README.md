@@ -119,6 +119,20 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   ```
 - **Resposta de sucesso: 200 OK**
 
+### Registrar um novo patch de informações recebidas do arduino
+
+- **Descrição:** Registra uma nova parcela de kilowatts/informações recebidos do arduino.
+- **Método:** `POST`
+- **Endpoint:** `/api/kilowatts/registrar/{contaId}`
+- **Corpo da Requisição:**
+  ```json
+    {
+      "kilowattsPegos": 100, 
+      "dataDeEmissao": "2023-09-04" 
+    }
+  ```
+- **Resposta de sucesso: 200 OK**
+
 ## Contribuição
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para enviar pull requests ou relatar problemas na seção de issues.
