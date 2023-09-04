@@ -109,9 +109,9 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 - **Corpo da Requisição:**
   ```json
     {
-      "idConta": 1,  // Replace with the appropriate value
-      "clienteId": 2,  // Replace with the actual client ID
-      "valorAPagar": 25.0,  // Replace with the desired value
+      "idConta": 1,
+      "clienteId": 2, 
+      "valorAPagar": 25.0, 
       "dataDeVencimento": "2025-03-12",
       "statusPagamento": "PAGO",
       "kilowattsHora": 100
