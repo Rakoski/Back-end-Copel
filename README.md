@@ -59,8 +59,8 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 ### Encontrar Cliente por Email
 
 - **Descrição:** Retorna informações de um cliente com base no endereço de e-mail.
-- **Método:** GET
-- **Endpoint:** /api/aluno/encontre/{email}
+- **Método:** `GET`
+- **Endpoint:** `/api/aluno/encontre/{email}`
 - **Parâmetros de URL:** email (e-mail do cliente a ser buscado)
 - **Resposta de sucesso:** 
   ```json
@@ -80,8 +80,8 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 ### Atualizar Email do Cliente
 
 - **Descrição:** Atualiza o endereço de e-mail de um cliente existente.
-- **Método:** PUT
-- **Endpoint:** /api/aluno/update-email/{IdCliente}/{newEmail}
+- **Método:** `PUT`
+- **Endpoint:** `/api/aluno/update-email/{IdCliente}/{newEmail}`
 - **Parâmetros de URL:** IdCliente (ID do cliente a ser atualizado), newEmail (email para qual será atualizado)
 - **Parâmetros de Consulta:** newEmail (novo endereço de e-mail a ser definido)
 - **Resposta de sucesso:** "Email updated successfully" 200 OK
@@ -90,8 +90,8 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 ### Pegar informações do cliente por ID
 
 - **Descrição:** Retorna informações de um cliente com base no ID.
-- **Método:** GET
-- **Endpoint:** /api/aluno/cliente_info/{IdCliente}
+- **Método:** `GET`
+- **Endpoint:** `/api/aluno/cliente_info/{IdCliente}`
 - **Parâmetros de URL:** IdCliente (ID do cliente a ser buscado)
 - **Resposta de sucesso:**
   ```json
@@ -100,6 +100,24 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
       "sobrenome": "Jr",
       "email": "neymarjr@gmail.com"
     }
+
+### Registrar uma nova conta
+
+- **Descrição:** Registra uma nova conta.
+- **Método:** `POST`
+- **Endpoint:** `/api/conta/registrar/{clienteId}`
+- **Corpo da Requisição:**
+  ```json
+    {
+      "idConta": 1,  // Replace with the appropriate value
+      "clienteId": 2,  // Replace with the actual client ID
+      "valorAPagar": 25.0,  // Replace with the desired value
+      "dataDeVencimento": "2025-03-12",
+      "statusPagamento": "PAGO",
+      "kilowattsHora": 100
+    }
+  ```
+- **Resposta de sucesso: 200 OK**
 
 ## Contribuição
 
