@@ -133,6 +133,31 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   ```
 - **Resposta de sucesso: 200 OK**
 
+### Pegar informações da conta pelo ID do cliente
+
+- **Descrição:** Retorna informações de uma conta e de sua energia relacionada com base no ID do cliente.
+- **Método:** `GET`
+- **Endpoint:** `/api/conta/{clienteId}`
+- **Parâmetros de URL:** IdCliente (ID do cliente a ser buscado)
+- **Resposta de sucesso:**
+  ```json
+    {
+      "kilowattsRecebidos": [
+          {
+              "dataDeEmissao": 1693785600000,
+              "contaId": 7,
+              "kilowattsPegos": 100,
+              "idKilowatts": 2
+          }
+      ],
+      "idInformacoesConta": 7,
+      "dataDeVencimento": 1741737600000,
+      "valorAPagar": 25.00,
+      "statusPagamento": "PAGO",
+      "kilowattsHora": 100,
+      "clienteId": 2
+    }
+
 ## Contribuição
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para enviar pull requests ou relatar problemas na seção de issues.
