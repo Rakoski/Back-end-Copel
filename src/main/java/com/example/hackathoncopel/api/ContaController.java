@@ -7,8 +7,6 @@ import com.example.hackathoncopel.servico.ServicoConta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,8 +28,13 @@ public class ContaController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/conta-info/{contaId}")
+    public Optional<Conta> getContaInfo(@PathVariable Long contaId) {
+        return contaRepository.findByIdConta(contaId);
+    }
+
     @GetMapping("/{ClienteId}")
-    public Optional<Conta> encontreUser(@PathVariable Long ClienteId) {
+    public Optional<Conta> encontreContaPeloIdDoCliente(@PathVariable Long ClienteId) {
         return contaRepository.findByClienteId(ClienteId);
     }
 

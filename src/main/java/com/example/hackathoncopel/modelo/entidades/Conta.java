@@ -52,11 +52,11 @@ public class Conta {
         ClienteId = clienteId;
     }
 
-    public Long getIdInformacoesConta() {
+    public Long getIdConta() {
         return ContaId;
     }
 
-    public void setIdInformacoesConta(Long contaId) {
+    public void setIdConta(Long contaId) {
         ContaId = contaId;
     }
 

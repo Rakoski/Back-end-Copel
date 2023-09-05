@@ -55,7 +55,7 @@ public class ContaPost {
         return ContaId;
     }
 
-    public void setIdInformacoesConta(Long idConta) {
+    public void setIdConta(Long idConta) {
         ContaId = idConta;
     }
 
