@@ -37,7 +37,7 @@ public class ServicoConta {
 
         // instanciando a nova conta com todos seus métodos e propriedades
         ContaPost conta = new ContaPost();
-        conta.setIdInformacoesConta(request.getIdConta());
+        conta.setIdConta(request.getIdConta());
         conta.setDataDeVencimento(request.getDataDeVencimento());
         conta.setValorAPagar(request.getValorAPagar());
         conta.setStatusPagamento(request.getStatusPagamento());
