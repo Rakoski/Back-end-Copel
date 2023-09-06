@@ -31,9 +31,9 @@ public class ClientesPost {
     @Transient
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Conta.class)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = ClienteEnderecoPost.class)
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
-    private Set<Conta> conta;
+    private Set<ClienteEnderecoPost> clienteEnderecoPosts;
 
     public String getPassword() {
         return password;
@@ -91,11 +91,11 @@ public class ClientesPost {
         this.senha_hash = senha_hash;
     }
 
-    public Set<Conta> getInformacoesConta() {
-        return conta;
+    public Set<ClienteEnderecoPost> getClienteEnderecoPosts() {
+        return clienteEnderecoPosts;
     }
 
-    public void setInformacoesConta(Set<Conta> conta) {
-        this.conta = conta;
+    public void setClienteEnderecoPosts(Set<ClienteEnderecoPost> clienteEnderecoPosts) {
+        this.clienteEnderecoPosts = clienteEnderecoPosts;
     }
 }

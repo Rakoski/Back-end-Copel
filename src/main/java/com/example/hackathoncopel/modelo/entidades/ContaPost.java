@@ -16,8 +16,8 @@ public class ContaPost {
     @Column(name = "id_conta")
     private Long ContaId;
 
-    @Column(name = "cliente_id")
-    private Long ClienteId;
+    @Column(name = "endereco_id")
+    private Long EnderecoId;
 
     @Column(name = "valor_a_pagar")
     private BigDecimal ValorAPagar;
@@ -43,12 +43,12 @@ public class ContaPost {
         this.kilowattsRecebidos = kilowattsRecebidos;
     }
 
-    public Long getCliente() {
-        return ClienteId;
+    public Long getEndereco() {
+        return EnderecoId;
     }
 
-    public void setCliente(Long clienteId) {
-        ClienteId = clienteId;
+    public void setEndereco(Long enderecoId) {
+        EnderecoId = enderecoId;
     }
 
     public Long getIdConta() {
@@ -83,19 +83,19 @@ public class ContaPost {
         StatusPagamento = statusPagamento;
     }
 
-    public Long getClienteId() {
-        return ClienteId;
-    }
-
-    public void setClienteId(Long clienteId) {
-        ClienteId = clienteId;
-    }
-
     public int getKilowattsHora() {
         return KilowattsHora;
     }
 
     public void setKilowattsHora(int kilowattsHora) {
         KilowattsHora = kilowattsHora;
+    }
+
+    public Long getEnderecoId() {
+        return EnderecoId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
+        EnderecoId = enderecoId;
     }
 }

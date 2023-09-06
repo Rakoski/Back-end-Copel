@@ -16,9 +16,9 @@ public class Conta {
     @Column(name = "id_conta")
     private Long ContaId;
 
-    @Column(name = "cliente_id")
+    @Column(name = "endereco_id")
     @JsonBackReference
-    private Long ClienteId;
+    private Long EnderecoId;
 
     @Column(name = "valor_a_pagar")
     private BigDecimal ValorAPagar;
@@ -45,19 +45,11 @@ public class Conta {
     }
 
     public Long getCliente() {
-        return ClienteId;
+        return EnderecoId;
     }
 
-    public void setCliente(Long clienteId) {
-        ClienteId = clienteId;
-    }
-
-    public Long getIdConta() {
-        return ContaId;
-    }
-
-    public void setIdConta(Long contaId) {
-        ContaId = contaId;
+    public void setCliente(Long enderecoId) {
+        EnderecoId = enderecoId;
     }
 
     public BigDecimal getValorAPagar() {
@@ -84,19 +76,27 @@ public class Conta {
         StatusPagamento = statusPagamento;
     }
 
-    public Long getClienteId() {
-        return ClienteId;
-    }
-
-    public void setClienteId(Long clienteId) {
-        ClienteId = clienteId;
-    }
-
     public int getKilowattsHora() {
         return KilowattsHora;
     }
 
     public void setKilowattsHora(int kilowattsHora) {
         KilowattsHora = kilowattsHora;
+    }
+
+    public Long getContaId() {
+        return ContaId;
+    }
+
+    public void setContaId(Long contaId) {
+        ContaId = contaId;
+    }
+
+    public Long getEnderecoId() {
+        return EnderecoId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
+        EnderecoId = enderecoId;
     }
 }
