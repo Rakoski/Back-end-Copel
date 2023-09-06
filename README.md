@@ -103,14 +103,14 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 
 ### Registrar uma nova conta
 
-- **Descrição:** Registra uma nova conta.
+- **Descrição:** Registra uma nova conta com o endereço fornecido.
 - **Método:** `POST`
-- **Endpoint:** `/api/conta/registrar/{clienteId}`
+- **Endpoint:** `/api/conta/registrar/{enderecoId}`
 - **Corpo da Requisição:**
   ```json
     {
       "idConta": 1,
-      "clienteId": 2, 
+      "enderecoId": 2, 
       "valorAPagar": 25.0, 
       "dataDeVencimento": "2025-03-12",
       "statusPagamento": "PAGO",
@@ -135,27 +135,20 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 
 ### Pegar informações da conta pelo ID do cliente
 
-- **Descrição:** Retorna informações de uma conta e de sua energia relacionada com base no ID do cliente.
+- **Descrição:** Retorna informações de uma conta e de sua energia relacionada com base no ID do endereco.
 - **Método:** `GET`
-- **Endpoint:** `/api/conta/{clienteId}`
+- **Endpoint:** `/api/conta/{enderecoId}`
 - **Parâmetros de URL:** IdCliente (ID do cliente a ser buscado)
 - **Resposta de sucesso:**
   ```json
     {
-      "kilowattsRecebidos": [
-          {
-              "dataDeEmissao": 1693785600000,
-              "contaId": 7,
-              "kilowattsPegos": 100,
-              "idKilowatts": 2
-          }
-      ],
-      "idInformacoesConta": 7,
+      "kilowattsRecebidos": [],
+      "contaId": 1,
       "dataDeVencimento": 1741737600000,
       "valorAPagar": 25.00,
       "statusPagamento": "PAGO",
       "kilowattsHora": 100,
-      "clienteId": 2
+      "enderecoId": 2,
     }
 
 ## Contribuição
