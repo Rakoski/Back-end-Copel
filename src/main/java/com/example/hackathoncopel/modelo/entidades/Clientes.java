@@ -32,10 +32,10 @@ public class Clientes {
     @Transient
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Conta.class)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = ClienteEndereco.class)
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
     @JsonManagedReference
-    private Set<Conta> conta;
+    private Set<ClienteEndereco> clienteEnderecos;
 
     public String getPassword() {
         return password;
@@ -93,11 +93,11 @@ public class Clientes {
         this.senha_hash = senha_hash;
     }
 
-    public Set<Conta> getInformacoesConta() {
-        return conta;
+    public Set<ClienteEndereco> getClienteEnderecos() {
+        return clienteEnderecos;
     }
 
-    public void setInformacoesConta(Set<Conta> conta) {
-        this.conta = conta;
+    public void setClienteEnderecos(Set<ClienteEndereco> clienteEnderecos) {
+        this.clienteEnderecos = clienteEnderecos;
     }
 }

@@ -14,11 +14,18 @@ create table clientes (
 create table conta (
     id_conta BIGINT not null primary key auto_increment,
     endereco_id BIGINT not null,
+    kilowattsrecebidos_id BIGINT not null,
     valor_a_pagar decimal not null,
+
+    # eu quero aplicar uma taxa extra baseado na estação do ano
+    # toda vez que for calcular o valor a pagar a gente vai multiplicar os kw/h
+    # pelos rs/kw-h do mês de setembro
+
     data_de_vencimento date not null,
     status_pagamento varchar(45) not null,
     kilowatts_hora int not null,
-    foreign key (endereco_id) references endereco(id_endereco)
+    foreign key (endereco_id) references endereco(id_endereco),
+    foreign key (kilowattsrecebidos_id) references kilowatts_recebidos(id_tabela_kilowatts)
 );
 
 create table endereco (
@@ -37,8 +44,14 @@ create table cliente_endereco (
 
 create table kilowatts_recebidos (
     id_tabela_kilowatts BIGINT not null primary key auto_increment,
-    conta_id BIGINT not null,
-    kilowatts_pegos int not null,
-    data_de_emissao date not null,
-    foreign key (conta_id) references conta(id_conta)
+    recebidosmedidor_id BIGINT NOT NULL,
+    kilowatts_hora int not null,
+    mes_recebido date not null,
+    foreign key (recebidosmedidor_id) references recebidos_do_medidor(id_recebidosmedidor)
+);
+
+create table recebidos_do_medidor (
+    id_recebidosmedidor BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    amperagem decimal not null
 )
+

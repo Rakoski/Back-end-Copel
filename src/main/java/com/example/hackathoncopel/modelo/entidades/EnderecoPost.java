@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "endereco")
-public class Endereco {
+public class EnderecoPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +20,13 @@ public class Endereco {
     @Column(name = "numero")
     private String numero;
 
-    @OneToMany(targetEntity = ClienteEndereco.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = ClienteEnderecoPost.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id_endereco")
-    @JsonManagedReference
-    private Set<ClienteEndereco> clienteEnderecos;
+    private Set<ClienteEnderecoPost> clienteEnderecosPost;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Conta.class)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = ContaPost.class)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id_endereco")
-    @JsonManagedReference
-    private Set<Conta> contas;
+    private Set<ContaPost> contasPost;
 
     public Long getIdEndereco() {
         return IdEndereco;
@@ -54,19 +52,19 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public Set<ClienteEndereco> getClienteEnderecos() {
-        return clienteEnderecos;
+    public Set<ClienteEnderecoPost> getClienteEnderecosPost() {
+        return clienteEnderecosPost;
     }
 
-    public void setClienteEnderecos(Set<ClienteEndereco> clienteEnderecos) {
-        this.clienteEnderecos = clienteEnderecos;
+    public void setClienteEnderecosPost(Set<ClienteEnderecoPost> clienteEnderecosPost) {
+        this.clienteEnderecosPost = clienteEnderecosPost;
     }
 
-    public Set<Conta> getContas() {
-        return contas;
+    public Set<ContaPost> getContasPost() {
+        return contasPost;
     }
 
-    public void setContas(Set<Conta> contas) {
-        this.contas = contas;
+    public void setContasPost(Set<ContaPost> contasPost) {
+        this.contasPost = contasPost;
     }
 }

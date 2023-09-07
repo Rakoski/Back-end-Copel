@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.session.SessionAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@SpringBootApplication(exclude = {SessionAutoConfiguration.class})
+@SpringBootApplication
 @CrossOrigin(origins = "http://localhost:8080/login")
 public class HackathonCopelApplication {
 

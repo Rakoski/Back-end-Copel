@@ -22,20 +22,20 @@ public class ContaController {
         this.servicoConta = servicoConta;
     }
 
-    @PostMapping("/registrar/{clienteId}")
-    public ResponseEntity<ContaPost> registrarConta(@RequestBody ContaPost request, @PathVariable Long clienteId) {
-        servicoConta.registrarConta(request, clienteId);
+    @PostMapping("/registrar/{enderecoId}")
+    public ResponseEntity<ContaPost> registrarConta(@RequestBody ContaPost request, @PathVariable Long enderecoId) {
+        servicoConta.registrarConta(request, enderecoId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/conta-info/{contaId}")
-    public Optional<Conta> getContaInfo(@PathVariable Long contaId) {
+    public Optional<Conta> getContaInfoPeloIdDaConta(@PathVariable Long contaId) {
         return contaRepository.findByIdConta(contaId);
     }
 
-    @GetMapping("/{ClienteId}")
-    public Optional<Conta> encontreContaPeloIdDoCliente(@PathVariable Long ClienteId) {
-        return contaRepository.findByClienteId(ClienteId);
+    @GetMapping("/{EnderecoId}")
+    public Optional<Conta> encontreContaPeloIdDoEndereco(@PathVariable Long EnderecoId) {
+        return contaRepository.findByEnderecoId(EnderecoId);
     }
 
 }
