@@ -1,9 +1,9 @@
 package com.example.hackathoncopel.servico;
 
-import com.example.hackathoncopel.modelo.entidades.ContaPost;
 import com.example.hackathoncopel.modelo.entidades.KilowattsRecebidosPost;
-import com.example.hackathoncopel.repositorios.ContaPostRepository;
+import com.example.hackathoncopel.modelo.entidades.RecebidosMedidorPost;
 import com.example.hackathoncopel.repositorios.KilowattsRecebidosPostRepository;
+import com.example.hackathoncopel.repositorios.RecebidosMedidorPostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,27 +14,29 @@ import org.springframework.web.server.ResponseStatusException;
 public class ServicoKilowatts {
 
     private final KilowattsRecebidosPostRepository kilowattsRecebidosPostRepository;
-    private final ContaPostRepository contaRepository;
+    private final RecebidosMedidorPostRepository recebidosMedidorPostRepository;
 
     @Autowired
-    public ServicoKilowatts(KilowattsRecebidosPostRepository kilowattsRecebidosPostRepository, ContaPostRepository contaRepository) {
+    public ServicoKilowatts(KilowattsRecebidosPostRepository kilowattsRecebidosPostRepository, RecebidosMedidorPostRepository recebidosMedidorPostRepository, RecebidosMedidorPostRepository recebidosMedidorPostRepository1) {
         this.kilowattsRecebidosPostRepository = kilowattsRecebidosPostRepository;
-        this.contaRepository = contaRepository;
+        this.recebidosMedidorPostRepository = recebidosMedidorPostRepository1;
     }
 
     // os kilowatts recebidos irão vir do arduino, então eles que se virem pra me mandar isso
+    // aqui, estamos registrando eles no servico para
     @Transactional
-    public void registrarKilowattsRecebidos(KilowattsRecebidosPost request, Long contaId) {
-        // encontrando a conta pelo seu id, se não tiver retorne uma ResponseStatusException
-        ContaPost conta = contaRepository.findById(contaId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Conta não encontrada com ID: " + contaId));
+    public void registrarKilowattsRecebidos(KilowattsRecebidosPost request, Long recebidosMedidorId) {
+        RecebidosMedidorPostRepository recebidosMedidorPostRepository1 =
+                (RecebidosMedidorPostRepository) recebidosMedidorPostRepository.findById(recebidosMedidorId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "recebidosMedidor não encontrados com ID: " + recebidosMedidorId));
 
         KilowattsRecebidosPost kilowattsRecebidos = new KilowattsRecebidosPost();
-        kilowattsRecebidos.setContaId(conta.getIdConta());
+        kilowattsRecebidos.setRecebidosMedidor(kilowattsRecebidos.getRecebidosMedidor());
         kilowattsRecebidos.setKilowattsPegos(request.getKilowattsPegos());
         kilowattsRecebidos.setDataDeEmissao(request.getDataDeEmissao());
 
-        // salvando o kilowatts recebidos
+        // salvando os kilowatts recebidos
         kilowattsRecebidosPostRepository.save(kilowattsRecebidos);
     }
 }

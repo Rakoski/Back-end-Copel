@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "kilowatts_recebidos")
@@ -14,13 +15,14 @@ public class KilowattsRecebidosPost {
     @Column(name = "id_tabela_kilowatts")
     private Long IdKilowatts;
 
-    @Column(name = "conta_id")
-    private Long ContaId;
+    @ManyToOne
+    @JoinColumn(name = "recebidosmedidor_id")
+    private RecebidosMedidorPost recebidosMedidor;
 
-    @Column(name = "kilowatts_pegos")
+    @Column(name = "kilowatts_hora")
     private int KilowattsPegos;
 
-    @Column(name = "data_de_emissao")
+    @Column(name = "mes_recebido")
     private Date DataDeEmissao;
 
     public Long getIdKilowatts() {
@@ -31,12 +33,12 @@ public class KilowattsRecebidosPost {
         IdKilowatts = idKilowatts;
     }
 
-    public Long getContaId() {
-        return ContaId;
+    public RecebidosMedidorPost getRecebidosMedidor() {
+        return recebidosMedidor;
     }
 
-    public void setContaId(Long contaId) {
-        ContaId = contaId;
+    public void setRecebidosMedidor(RecebidosMedidorPost recebidosMedidor) {
+        this.recebidosMedidor = recebidosMedidor;
     }
 
     public int getKilowattsPegos() {
@@ -55,4 +57,3 @@ public class KilowattsRecebidosPost {
         DataDeEmissao = dataDeEmissao;
     }
 }
-
