@@ -151,6 +151,17 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
       "enderecoId": 2,
     }
 
+### Registrar Amperagem
+
+- **Descrição:** Registra a amperagem registrada. Isso deverá ser feito de 1 em 1 hora pelo esp32.
+- **Método:** `POST`
+- **Endpoint:** `/api/energia/upload`
+- **Corpo da requisição:**
+  ```json
+  {
+    "amperagem": 50.0
+  }
+
 ## Contribuição
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para enviar pull requests ou relatar problemas na seção de issues.
