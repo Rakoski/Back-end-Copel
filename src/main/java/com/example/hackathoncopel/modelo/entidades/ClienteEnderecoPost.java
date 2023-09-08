@@ -11,13 +11,23 @@ public class ClienteEnderecoPost {
     @Column(name = "id_clienteendereco")
     private Long IdClienteEndereco;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private ClientesPost ClienteId;
+    // eu coloquei tanto o clienteId como o enderecoId como long pois tavam dando BadRequest ao associar os dois
+    // acredito que isso não será um problema já que os dois foram possíveis de se associarem assim,
+    // mesmo com a ligação many-to-one
+    @Column(name = "cliente_id")
+    private Long ClienteId;
 
-    @ManyToOne
-    @JoinColumn(name = "endereco_id")
-    private EnderecoPost EnderecoId;
+    @Column(name = "endereco_id")
+    private Long EnderecoId;
+
+    public ClienteEnderecoPost(Long clienteId, Long enderecoId) {
+        this.ClienteId = clienteId;
+        this.EnderecoId = enderecoId;
+    }
+
+    public ClienteEnderecoPost() {
+
+    }
 
     public Long getIdClienteEndereco() {
         return IdClienteEndereco;
@@ -27,19 +37,19 @@ public class ClienteEnderecoPost {
         IdClienteEndereco = idClienteEndereco;
     }
 
-    public ClientesPost getClienteId() {
+    public Long getClienteId() {
         return ClienteId;
     }
 
-    public void setClienteId(ClientesPost clienteId) {
-        ClienteId = clienteId;
-    }
-
-    public EnderecoPost getEnderecoId() {
+    public Long getEnderecoId() {
         return EnderecoId;
     }
 
-    public void setEnderecoId(EnderecoPost enderecoId) {
+    public void setClienteId(Long clienteId) {
+        ClienteId = clienteId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
         EnderecoId = enderecoId;
     }
 }

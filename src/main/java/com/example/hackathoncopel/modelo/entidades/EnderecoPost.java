@@ -28,6 +28,19 @@ public class EnderecoPost {
     @JoinColumn(name = "endereco_id", referencedColumnName = "id_endereco")
     private Set<ContaPost> contasPost;
 
+    public EnderecoPost(Long idEndereco, String cep, String numero,
+                        Set<ClienteEnderecoPost> clienteEnderecosPost, Set<ContaPost> contasPost) {
+        IdEndereco = idEndereco;
+        this.cep = cep;
+        this.numero = numero;
+        this.clienteEnderecosPost = clienteEnderecosPost;
+        this.contasPost = contasPost;
+    }
+
+    public EnderecoPost() {
+
+    }
+
     public Long getIdEndereco() {
         return IdEndereco;
     }

@@ -33,9 +33,4 @@ public class ContaController {
         return contaRepository.findByIdConta(contaId);
     }
 
-    @GetMapping("/{EnderecoId}")
-    public Optional<Conta> encontreContaPeloIdDoEndereco(@PathVariable Long EnderecoId) {
-        return contaRepository.findByEnderecoId(EnderecoId);
-    }
-
 }

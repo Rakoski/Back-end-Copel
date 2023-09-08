@@ -22,8 +22,9 @@ public class ServicoKilowatts {
         this.recebidosMedidorPostRepository = recebidosMedidorPostRepository1;
     }
 
-    // os kilowatts recebidos irão vir do arduino, então eles que se virem pra me mandar isso
-    // aqui, estamos registrando eles no servico para
+    // os kilowatts fotovoltaicos recebidos irão vir do arduino, então eles que se virem pra me mandar isso
+    // aqui, estamos registrando eles no servico para que o cliente possa vẽ-los no site.
+    // para isso, será necessário o endpoint mais simples da face da terra. É o que eu fiz no servicoRecebidosMedidor
     @Transactional
     public void registrarKilowattsRecebidos(KilowattsRecebidosPost request, Long recebidosMedidorId) {
         RecebidosMedidorPostRepository recebidosMedidorPostRepository1 =
@@ -36,7 +37,6 @@ public class ServicoKilowatts {
         kilowattsRecebidos.setKilowattsPegos(request.getKilowattsPegos());
         kilowattsRecebidos.setDataDeEmissao(request.getDataDeEmissao());
 
-        // salvando os kilowatts recebidos
         kilowattsRecebidosPostRepository.save(kilowattsRecebidos);
     }
 }

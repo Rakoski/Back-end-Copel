@@ -23,6 +23,8 @@ public class ServicoRecebidosMedidor {
         this.kilowattsRecebidosPostRepository = kilowattsRecebidosPostRepository;
     }
 
+    // decidi não fazer literalmente nada de complicado aqui; esse endpoint precisa ser o mais simples já criado
+    // para que o pessoal de eng elétrica consiga mandar em forma de json sem cagar tudo o projeto
     public void addAmperagem(BigDecimal amperagem) {
         RecebidosMedidorPost recebido = new RecebidosMedidorPost();
         recebido.setAmperagem(amperagem);

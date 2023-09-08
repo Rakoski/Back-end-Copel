@@ -26,7 +26,7 @@ public class RecebidosMedidorController {
     public ResponseEntity<String> addAmperagem(@RequestBody RecebidosMedidorPost requestBody) {
         BigDecimal amperagem = requestBody.getAmperagem();
         servicoRecebidosMedidor.addAmperagem(amperagem);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Amperagem added successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Amperagem adicionada com sucesso!");
     }
 
 }

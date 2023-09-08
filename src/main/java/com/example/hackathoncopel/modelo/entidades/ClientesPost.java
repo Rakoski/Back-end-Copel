@@ -35,6 +35,22 @@ public class ClientesPost {
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
     private Set<ClienteEnderecoPost> clienteEnderecoPosts;
 
+    public ClientesPost(Long idCliente, String nome, String sobrenome, String email, byte[] senha_salt, byte[]
+            senha_hash, String password, Set<ClienteEnderecoPost> clienteEnderecoPosts) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.senha_salt = senha_salt;
+        this.senha_hash = senha_hash;
+        this.password = password;
+        this.clienteEnderecoPosts = clienteEnderecoPosts;
+    }
+
+    public ClientesPost() {
+
+    }
+
     public String getPassword() {
         return password;
     }

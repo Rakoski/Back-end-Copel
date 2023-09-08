@@ -26,7 +26,6 @@ public class ServicoEndereco {
     @Transactional
     public void registrarEndereco(EnderecoPost request) {
 
-        // Criando e salvando o endereco na db
         EnderecoPost endereco = new EnderecoPost();
         endereco.setCep(request.getCep());
         endereco.setNumero(request.getNumero());

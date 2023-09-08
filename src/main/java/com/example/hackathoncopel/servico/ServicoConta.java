@@ -29,11 +29,9 @@ public class ServicoConta {
 
     @Transactional
     public void registrarConta(ContaPost request, Long enderecoId) {
-        // encontrando os clientes pelo seu id
         EnderecoPost enderecoPost = enderecoPostRepository.findById(enderecoId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereço não encontrado com ID: " + enderecoId));
 
-        // instanciando a nova conta com todos seus métodos e propriedades
         ContaPost conta = new ContaPost();
         conta.setIdConta(request.getIdConta());
         conta.setDataDeVencimento(request.getDataDeVencimento());
@@ -41,10 +39,8 @@ public class ServicoConta {
         conta.setStatusPagamento(request.getStatusPagamento());
         conta.setKilowattsHora(request.getKilowattsHora());
 
-        // associando o cliente com a conta
         conta.setEnderecoId(enderecoPost.getIdEndereco());
 
-        // salvando a conta
         contaRepository.save(conta);
     }
 }

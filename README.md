@@ -133,7 +133,7 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   ```
 - **Resposta de sucesso: 200 OK**
 
-### Pegar informações da conta pelo ID do cliente
+### Pegar informações da conta pelo ID do endereço
 
 - **Descrição:** Retorna informações de uma conta e de sua energia relacionada com base no ID do endereco.
 - **Método:** `GET`
@@ -160,6 +160,18 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   ```json
   {
     "amperagem": 50.0
+  }
+  
+### Registrar um cliente com um endereço
+
+- **Descrição:** Registra um cliente com um endereço.
+- **Método:** `POST`
+- **Endpoint:** `/api/cliente-endereco/registrar`
+- **Corpo da requisição:**
+  ```json
+  {
+  "clienteId": 1,
+  "enderecoId": 1
   }
 
 ## Contribuição
