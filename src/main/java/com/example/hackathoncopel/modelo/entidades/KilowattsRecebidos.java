@@ -17,6 +17,7 @@ public class KilowattsRecebidos {
 
     @ManyToOne
     @JoinColumn(name = "recebidosmedidor_id")
+    @JsonBackReference
     private RecebidosMedidor recebidosMedidor;
 
     @Column(name = "kilowatts_hora")

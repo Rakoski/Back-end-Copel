@@ -1,10 +1,9 @@
 package com.example.hackathoncopel.servico;
 
-import com.example.hackathoncopel.modelo.entidades.ClienteEndereco;
 import com.example.hackathoncopel.modelo.entidades.ClienteEnderecoPost;
-import com.example.hackathoncopel.modelo.entidades.ClientesPost;
-import com.example.hackathoncopel.modelo.entidades.EnderecoPost;
+import com.example.hackathoncopel.repositorios.ClienteEnderecoPostRepository;
 import com.example.hackathoncopel.repositorios.ClienteEnderecoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,21 +11,26 @@ public class ServicoClienteEndereco {
 
     private ClienteEnderecoRepository clienteEnderecoRepository;
 
-    public ServicoClienteEndereco(ClienteEnderecoRepository clienteEnderecoRepository) {
+    private final ClienteEnderecoPostRepository clienteEnderecoPostRepository;
+
+    public ServicoClienteEndereco(ClienteEnderecoRepository clienteEnderecoRepository, ClienteEnderecoPostRepository clienteEnderecoPostRepository) {
         this.clienteEnderecoRepository = clienteEnderecoRepository;
+        this.clienteEnderecoPostRepository = clienteEnderecoPostRepository;
     }
 
-    public ClienteEnderecoPost salvandoClienteComSeuEndereco(ClientesPost cliente, EnderecoPost endereco) {
+    @Transactional
+    public void salvandoClienteComSeuEndereco(ClienteEnderecoPost request) {
         try {
             ClienteEnderecoPost clienteEndereco = new ClienteEnderecoPost();
 
-            clienteEndereco.setClienteId(cliente);
-            clienteEndereco.setEnderecoId(endereco);
+            clienteEndereco.setClienteId(request.getClienteId());
+            clienteEndereco.setEnderecoId(request.getEnderecoId());
 
-            return clienteEnderecoRepository.save(clienteEndereco);
+            clienteEnderecoPostRepository.save(clienteEndereco);
         } catch (Exception e) {
-            throw new RuntimeException("Error saving ClienteEndereco relationship: " + e.getMessage());
+            throw new RuntimeException("Erro ao salvar o relacionamento ClienteEndereço: " + e.getMessage());
         }
     }
+
 
 }

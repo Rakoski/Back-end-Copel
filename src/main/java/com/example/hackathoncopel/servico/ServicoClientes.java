@@ -27,20 +27,16 @@ public class ServicoClientes {
 
     @Transactional
     public void registrarCliente(ClientesPost request) {
-        // Validando o email pelo PasswordUtils
         if (!PasswordUtils.isValidEmail(request.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email inválido!");
         }
 
-        // Gerando o hash e salt
         byte[] passwordSalt = PasswordUtils.generateSalt();
         byte[] passwordHash = PasswordUtils.generateHash(request.getPassword(), passwordSalt);
 
-        // Codificando usando Base64
         String passwordHashString = PasswordUtils.encodeBase64(passwordHash);
         String passwordSaltString = PasswordUtils.encodeBase64(passwordSalt);
 
-        // Criando e salvando o cliente na db
         Clientes clientes = new Clientes();
         clientes.setNome(request.getNome());
         clientes.setSobrenome(request.getSobrenome());
@@ -53,32 +49,28 @@ public class ServicoClientes {
 
     @Transactional
     public void loginUser(ClientesPost request) {
-        // encontrando o cliente pelo email
         Clientes clientes = clientesRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado"));
 
-        // Decode stored salt and hash from Base64
         byte[] storedPasswordHash = PasswordUtils.decodeBase64(clientes.getSenha_hash());
         byte[] storedPasswordSalt = PasswordUtils.decodeBase64(clientes.getSenha_salt());
 
-        // Generate hash for entered password using stored salt
         byte[] enteredPasswordHash = PasswordUtils.generateHash(request.getPassword(), storedPasswordSalt);
 
-        // Compare the generated hash with the stored hash
         if (!MessageDigest.isEqual(storedPasswordHash, enteredPasswordHash)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect password");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha incorreta");
         }
     }
 
-    // Pegue uma lista de todos os clientes
     public List<Clientes> findAllClients() {
         return clientesRepository.findAll();
     }
 
-    // Pegue as informações em forma de JSON para dar para o front, com o id informado
+    // Pegue as informações em forma de JSON para dar para o front, com o id informado.
+    // Eu decidi
     public Map<String, String> findClientInfoById(Long idCliente) {
         Clientes clientes = clientesRepository.findById(idCliente)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found with ID " + idCliente));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado com id " + idCliente));
 
         Map<String, String> clientInfo = new HashMap<>();
         clientInfo.put("nome", clientes.getNome());
@@ -89,17 +81,14 @@ public class ServicoClientes {
     }
 
     public Optional<Clientes> findClientsByEmail(String email) {
-        // Pegando os clientes do repositório
         return clientesRepository.findByEmail(email);
     }
 
     @Transactional
-    public void updateClienteEmail(Long userId, String newEmail) {
-        // encontrar o cliente pelo Id
-        Clientes clientes = clientesRepository.findById(userId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID " + userId));
+    public void updateClienteEmail(Long clienteId, String newEmail) {
+        Clientes clientes = clientesRepository.findById(clienteId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado com id" + clienteId));
 
-        // fazendo o update do email do cliente...
         clientes.setEmail(newEmail);
         clientesRepository.save(clientes);
     }
