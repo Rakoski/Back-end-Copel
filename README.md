@@ -174,6 +174,26 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   "enderecoId": 1
   }
 
+### Pegar o ID de um endereço pelo seu cep
+
+- **Descrição:** Retorna o ID de um endereço com base no seu cep.
+- **Método:** `GET`
+- **Endpoint:** `/api/endereco/encontre-pelo-cep/{cep}`
+- **Parâmetros de URL:** cep (cep a ser buscado)
+- **Resposta de sucesso:**
+  ```json
+  2
+  
+### Encontrar todos os ceps com base no id do cliente.
+
+- **Descrição:** Retorna os ceps de um cliente com base no seu id.
+- **Método:** `GET`
+- **Endpoint:** `/api/endereco/encontre-pelo-cep/{cep}`
+- **Parâmetros de URL:** idCliente (id do cliente que terá seus ceps buscados)
+- **Resposta de sucesso:**
+  ```json
+  "87707-190"
+
 ## Contribuição
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para enviar pull requests ou relatar problemas na seção de issues.
