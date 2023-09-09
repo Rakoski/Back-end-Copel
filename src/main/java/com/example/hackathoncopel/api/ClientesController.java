@@ -2,6 +2,7 @@ package com.example.hackathoncopel.api;
 
 import com.example.hackathoncopel.modelo.entidades.Clientes;
 import com.example.hackathoncopel.modelo.entidades.ClientesPost;
+import com.example.hackathoncopel.repositorios.ClientesRepository;
 import com.example.hackathoncopel.servico.ServicoClientes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,11 @@ public class ClientesController {
 
     private final ServicoClientes servicoClientes;
 
-    public ClientesController(ServicoClientes servicoClientes) {
+    private final ClientesRepository clientesRepository;
+
+    public ClientesController(ServicoClientes servicoClientes, ClientesRepository clientesRepository) {
         this.servicoClientes = servicoClientes;
+        this.clientesRepository = clientesRepository;
     }
 
     @PostMapping("/registrar")
@@ -45,7 +49,7 @@ public class ClientesController {
 
     @GetMapping("/encontre/{email}")
     public Optional<Clientes> encontreClientePorEmail(@PathVariable String email) {
-        return servicoClientes.findClientsByEmail(email);
+        return clientesRepository.findByEmail(email);
     }
 
     @PutMapping("/update-email/{IdCliente}/{newEmail}")

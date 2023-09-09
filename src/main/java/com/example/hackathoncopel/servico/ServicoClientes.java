@@ -80,10 +80,6 @@ public class ServicoClientes {
         return clientInfo;
     }
 
-    public Optional<Clientes> findClientsByEmail(String email) {
-        return clientesRepository.findByEmail(email);
-    }
-
     @Transactional
     public void updateClienteEmail(Long clienteId, String newEmail) {
         Clientes clientes = clientesRepository.findById(clienteId)

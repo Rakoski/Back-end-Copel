@@ -2,6 +2,7 @@ package com.example.hackathoncopel.modelo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Columns;
 
 import javax.annotation.processing.Generated;
 
@@ -14,15 +15,13 @@ public class ClienteEndereco {
     @Column(name = "id_clienteendereco")
     private Long IdClienteEndereco;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @Column(name = "cliente_id")
     @JsonBackReference
-    private Clientes ClienteId;
+    private Long ClienteId;
 
-    @ManyToOne
-    @JoinColumn(name = "endereco_id")
+    @Column(name = "endereco_id")
     @JsonBackReference
-    private Endereco EnderecoId;
+    private Long EnderecoId;
 
     public Long getIdClienteEndereco() {
         return IdClienteEndereco;
@@ -32,19 +31,19 @@ public class ClienteEndereco {
         IdClienteEndereco = idClienteEndereco;
     }
 
-    public Clientes getClienteId() {
+    public Long getClienteId() {
         return ClienteId;
     }
 
-    public void setClienteId(Clientes clienteId) {
+    public void setClienteId(Long clienteId) {
         ClienteId = clienteId;
     }
 
-    public Endereco getEnderecoId() {
+    public Long getEnderecoId() {
         return EnderecoId;
     }
 
-    public void setEnderecoId(Endereco enderecoId) {
+    public void setEnderecoId(Long enderecoId) {
         EnderecoId = enderecoId;
     }
 }
