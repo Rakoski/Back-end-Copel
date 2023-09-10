@@ -83,9 +83,29 @@ public class ServicoClientes {
     @Transactional
     public void updateClienteEmail(Long clienteId, String newEmail) {
         Clientes clientes = clientesRepository.findById(clienteId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado com id" + clienteId));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado com id"
+                        + clienteId));
 
         clientes.setEmail(newEmail);
         clientesRepository.save(clientes);
+    }
+
+    @Transactional
+    public void updateClienteSenha(Long idCliente, String novaSenha) {
+        Clientes clientes = clientesRepository.findById(idCliente)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado com id"
+                        + idCliente));
+
+        byte[] passwordSalt = PasswordUtils.generateSalt();
+        byte[] passwordHash = PasswordUtils.generateHash(novaSenha, passwordSalt);
+
+        String passwordHashString = PasswordUtils.encodeBase64(passwordHash);
+        String passwordSaltString = PasswordUtils.encodeBase64(passwordSalt);
+
+        clientes.setSenha_hash(passwordHashString.getBytes());
+        clientes.setSenha_salt(passwordSaltString.getBytes());
+
+        clientesRepository.save(clientes);
+
     }
 }

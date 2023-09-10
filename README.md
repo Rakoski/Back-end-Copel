@@ -84,8 +84,18 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 - **Endpoint:** `/api/aluno/update-email/{IdCliente}/{newEmail}`
 - **Parâmetros de URL:** IdCliente (ID do cliente a ser atualizado), newEmail (email para qual será atualizado)
 - **Parâmetros de Consulta:** newEmail (novo endereço de e-mail a ser definido)
-- **Resposta de sucesso:** "Email updated successfully" 200 OK
-- **Resposta de erro:** 404 Not Found (se o cliente não for encontrado)
+- **Resposta de sucesso:** "Email editado com sucesso" 200 OK
+- **Resposta de erro:** 404 Not Found (se o IdCliente não for encontrado)
+
+### Atualizar senha do Cliente
+
+- **Descrição:** Atualiza a senha de um cliente existente.
+- **Método:** `PUT`
+- **Endpoint:** `/api/aluno/update-senha/{IdCliente}/{novaSenha}`
+- **Parâmetros de URL:** IdCliente (ID do cliente a ser atualizado), novaSenha (senha para qual será atualizada)
+- **Parâmetros de Consulta:** novaSenha (nova senha a ser definida)
+- **Resposta de sucesso:** "Senha editada com sucesso" 200 OK
+- **Resposta de erro:** 404 Not Found (se o IdCliente não for encontrado)
 
 ### Pegar informações do cliente por ID
 
@@ -160,6 +170,18 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
   ```json
   {
     "amperagem": 50.0
+  }
+  
+### Registrar um novo endereço
+
+- **Descrição:** Registra um novo endereço.
+- **Método:** `POST`
+- **Endpoint:** `/api/endereco/registrar`
+- **Corpo da requisição:**
+  ```json
+  {
+  "cep": "87737-125",
+  "numero": "780"
   }
   
 ### Registrar um cliente com um endereço

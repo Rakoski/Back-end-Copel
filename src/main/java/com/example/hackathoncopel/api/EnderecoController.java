@@ -8,6 +8,7 @@ import com.example.hackathoncopel.servico.ServicoEndereco;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -46,7 +47,7 @@ public class EnderecoController {
     }
 
     @GetMapping("/encontre-todos-ceps/{IdCliente}")
-    public Optional<String> pegarCepsPeloIdDoEndereco(@PathVariable Long IdCliente) {
+    public List<String> pegarCepsPeloIdDoCliente(@PathVariable Long IdCliente) {
         return enderecoRepository.encontreTodosCepsPeloIdCliente(IdCliente);
     }
 

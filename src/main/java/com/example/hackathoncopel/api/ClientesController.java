@@ -55,6 +55,12 @@ public class ClientesController {
     @PutMapping("/update-email/{IdCliente}/{newEmail}")
     public ResponseEntity<String> updateEmail(@PathVariable Long IdCliente, @PathVariable String newEmail) {
         servicoClientes.updateClienteEmail(IdCliente, newEmail);
-        return ResponseEntity.ok("Email updated successfully");
+        return ResponseEntity.ok("Email editado com sucesso!");
+    }
+
+    @PutMapping("/update-senha/{IdCliente}/{novaSenha}")
+    public ResponseEntity<String> updateSenha(@PathVariable Long IdCliente, @PathVariable String novaSenha) {
+        servicoClientes.updateClienteSenha(IdCliente, novaSenha);
+        return ResponseEntity.ok("Senha editada com sucesso!");
     }
 }
