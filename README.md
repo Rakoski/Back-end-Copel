@@ -188,11 +188,15 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 
 - **Descrição:** Retorna os ceps de um cliente com base no seu id.
 - **Método:** `GET`
-- **Endpoint:** `/api/endereco/encontre-pelo-cep/{cep}`
-- **Parâmetros de URL:** idCliente (id do cliente que terá seus ceps buscados)
+- **Endpoint:** `/api/endereco/encontre-todos-ceps/{IdCliente}`
+- **Parâmetros de URL:** IdCliente (id do cliente que terá seus ceps buscados)
 - **Resposta de sucesso:**
   ```json
-  "87707-190"
+  [
+    "87707-190",
+    "87737-125",
+    "87765-490"
+  ]
 
 ## Contribuição
 
