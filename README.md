@@ -215,6 +215,27 @@ A estrutura do projeto Spring Boot gerenciado pelo Gradle segue a seguinte organ
 - **Resposta de sucesso:**
   ```json
   "87707-190"
+  
+### Pega todas as informações da conta (de luz) com base no id do endereço
+
+- **Descrição:** Retorna as informações de uma conta (de luz) com base no seu id de endereço.
+- **Método:** `GET`
+- **Endpoint:** `/api/conta/conta-endereco/{IdEndereco}`
+- **Parâmetros de URL:** IdEndereco (id do endereço que terá sua conta buscada)
+- **Resposta de sucesso:**
+  ```json
+  [
+    {
+        "kilowattsRecebidos": [],
+        "enderecoId": 2,
+        "dataDeVencimento": 1741737600000,
+        "valorAPagar": 25.00,
+        "statusPagamento": "PAGO",
+        "kilowattsHora": 100,
+        "cliente": 2,
+        "contaId": 1
+    }
+  ]
 
 ## Contribuição
 

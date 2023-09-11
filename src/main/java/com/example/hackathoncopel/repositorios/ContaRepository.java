@@ -25,5 +25,9 @@ public interface ContaRepository extends JpaRepository<Conta, Long> {
             " = conta.endereco_id WHERE conta.id_conta = :contaId", nativeQuery = true)
     Optional<Endereco> findEnderecoByContaId(@Param("contaId") Long contaId);
 
+    @Query(value = "SELECT copel.conta.* FROM copel.conta JOIN copel.endereco ON copel.conta.endereco_id = " +
+            "copel.endereco.id_endereco WHERE copel.conta.endereco_id = :enderecoId", nativeQuery = true)
+    List<Conta> findContaInfoByEnderecoId(@Param("enderecoId") Long enderecoId);
+
 
 }

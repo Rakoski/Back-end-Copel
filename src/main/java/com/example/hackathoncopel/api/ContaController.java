@@ -7,6 +7,7 @@ import com.example.hackathoncopel.servico.ServicoConta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +32,11 @@ public class ContaController {
     @GetMapping("/conta-info/{contaId}")
     public Optional<Conta> getContaInfoPeloIdDaConta(@PathVariable Long contaId) {
         return contaRepository.findByIdConta(contaId);
+    }
+
+    @GetMapping("/conta-endereco/{enderecoId}")
+    public List<Conta> getContaInfoPeloIdDoEndereco(@PathVariable Long enderecoId) {
+        return contaRepository.findContaInfoByEnderecoId(enderecoId);
     }
 
 }
