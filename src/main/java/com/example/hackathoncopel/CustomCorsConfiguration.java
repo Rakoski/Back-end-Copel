@@ -12,13 +12,13 @@ public class CustomCorsConfiguration {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("*"); // Allow requests from any origin
-        corsConfig.addAllowedMethod("*"); // Allow all HTTP methods
-        corsConfig.addAllowedHeader("*"); // Allow all headers
-        corsConfig.setMaxAge(3600L); // Max age of the CORS options request
+        corsConfig.addAllowedOrigin("*");
+        corsConfig.addAllowedMethod("*");
+        corsConfig.addAllowedHeader("*");
+        corsConfig.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig); // Apply CORS rules to all endpoints
+        source.registerCorsConfiguration("/**", corsConfig);
 
         return new CorsFilter(source);
     }

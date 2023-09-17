@@ -8,6 +8,7 @@ import com.example.hackathoncopel.servico.ServicoEndereco;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,13 +43,8 @@ public class EnderecoController {
     // sessionstorage, daí depois eu pego o cep da sessionstorage e com ele, pesquiso o id do endereço,
     // com o id do endereço, eu retorno todos os ceps cadastrados com tal id de endereço
     @GetMapping("/encontre-pelo-cep/{cep}")
-    public Optional<Long> pegarIdDoEnderecoPeloCEP(@PathVariable String cep) {
+    public List<Long> pegarIdDoEnderecoPeloCEP(@PathVariable String cep) {
         return enderecoRepository.findIdByCep(cep);
-    }
-
-    @GetMapping("/encontre-todos-ceps/{IdCliente}")
-    public List<String> pegarCepsPeloIdDoCliente(@PathVariable Long IdCliente) {
-        return enderecoRepository.encontreTodosCepsPeloIdCliente(IdCliente);
     }
 
 }
