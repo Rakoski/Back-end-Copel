@@ -3,7 +3,9 @@ package com.example.hackathoncopel.api;
 import com.example.hackathoncopel.modelo.entidades.Clientes;
 import com.example.hackathoncopel.modelo.entidades.ClientesPost;
 import com.example.hackathoncopel.repositorios.ClientesRepository;
+import com.example.hackathoncopel.servico.EmailSenderService;
 import com.example.hackathoncopel.servico.ServicoClientes;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +21,12 @@ public class ClientesController {
 
     private final ClientesRepository clientesRepository;
 
-    public ClientesController(ServicoClientes servicoClientes, ClientesRepository clientesRepository) {
+    private final EmailSenderService emailSenderService;
+
+    public ClientesController(ServicoClientes servicoClientes, ClientesRepository clientesRepository, EmailSenderService emailSenderService) {
         this.servicoClientes = servicoClientes;
         this.clientesRepository = clientesRepository;
+        this.emailSenderService = emailSenderService;
     }
 
     @PostMapping("/registrar")
@@ -36,7 +41,18 @@ public class ClientesController {
         return ResponseEntity.ok("Login successful");
     }
 
-    @PostMapping("")
+    @PostMapping("/mandar-email-de-mudar-senha")
+    public ResponseEntity<String> mandarEmailDeMudarSenha(@RequestBody String email) {
+        Optional<Clientes> encontrouPeloEmail = clientesRepository.findByEmail(email);
+
+        if (encontrouPeloEmail.isPresent()) {
+            emailSenderService.SendEmail(email, "Mudança de senha requisitada",
+                    "Para mudar sua senha, entre nesse site: ");
+            return ResponseEntity.ok("Email enviado");
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 
     @GetMapping("/get")
     public List<Clientes> encontreInformacoesDeTodosClientes() {
