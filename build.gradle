@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'com.mysql:mysql-connector-j:8.1.0'
     implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'net.ifok.mail:mail-spring-boot-starter:1.0.1'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 

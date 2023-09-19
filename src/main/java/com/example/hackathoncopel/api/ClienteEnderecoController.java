@@ -32,9 +32,4 @@ public class ClienteEnderecoController {
         return clienteEnderecoRepository.encontreTodosCepsPeloIdCliente(IdCliente);
     }
 
-    // quero fazer uma função que retorna todos os ids do cliente que tão cadastrados com um id de endereço
-
-    // e outro que retorna todos os ids de endereços (e seus ceps) cadastrados com um id do cliente
-
-
 }

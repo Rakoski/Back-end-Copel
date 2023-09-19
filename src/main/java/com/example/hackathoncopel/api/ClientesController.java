@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/aluno")
+@RequestMapping("/api/cliente")
 public class ClientesController {
 
     private final ServicoClientes servicoClientes;
@@ -25,41 +25,43 @@ public class ClientesController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<ClientesPost> registrarCliente(@RequestBody ClientesPost request) {
+    public ResponseEntity<ClientesPost> registrarUmCliente(@RequestBody ClientesPost request) {
         servicoClientes.registrarCliente(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginCliente(@RequestBody ClientesPost request) {
+    public ResponseEntity<String> loginDoCliente(@RequestBody ClientesPost request) {
         servicoClientes.loginUser(request);
         return ResponseEntity.ok("Login successful");
     }
 
+    @PostMapping("")
+
     @GetMapping("/get")
-    public List<Clientes> encontreTodosClientes() {
+    public List<Clientes> encontreInformacoesDeTodosClientes() {
         return servicoClientes.findAllClients();
     }
 
     @GetMapping("/cliente_info/{IdCliente}")
-    public ResponseEntity<Map<String, String>> encontreClientePorId(@PathVariable("IdCliente") Long IdCliente) {
+    public ResponseEntity<Map<String, String>> encontreInformacoesDeUmClientePorId(@PathVariable("IdCliente") Long IdCliente) {
         Map<String, String> userInfo = servicoClientes.findClientInfoById(IdCliente);
         return ResponseEntity.ok(userInfo);
     }
 
     @GetMapping("/encontre/{email}")
-    public Optional<Clientes> encontreClientePorEmail(@PathVariable String email) {
+    public Optional<Clientes> encontreInformacoesDeUmClientePorEmail(@PathVariable String email) {
         return clientesRepository.findByEmail(email);
     }
 
     @PutMapping("/update-email/{IdCliente}/{newEmail}")
-    public ResponseEntity<String> updateEmail(@PathVariable Long IdCliente, @PathVariable String newEmail) {
+    public ResponseEntity<String> updateEmailDeUmCliente(@PathVariable Long IdCliente, @PathVariable String newEmail) {
         servicoClientes.updateClienteEmail(IdCliente, newEmail);
         return ResponseEntity.ok("Email editado com sucesso!");
     }
 
     @PutMapping("/update-senha/{IdCliente}/{novaSenha}")
-    public ResponseEntity<String> updateSenha(@PathVariable Long IdCliente, @PathVariable String novaSenha) {
+    public ResponseEntity<String> updateSenhaDeUmCliente(@PathVariable Long IdCliente, @PathVariable String novaSenha) {
         servicoClientes.updateClienteSenha(IdCliente, novaSenha);
         return ResponseEntity.ok("Senha editada com sucesso!");
     }
