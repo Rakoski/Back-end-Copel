@@ -14,7 +14,7 @@ public class CustomCorsConfiguration {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOrigin("*"); 
         corsConfig.addAllowedMethod("*");
-        corsConfig.addAllowedHeader("*"); // Allow all headers
+        corsConfig.addAllowedHeader("*"); 
         corsConfig.setMaxAge(3600L); // Max age of the CORS options request
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
