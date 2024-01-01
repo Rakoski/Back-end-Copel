@@ -13,7 +13,7 @@ public class CustomCorsConfiguration {
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOrigin("*"); 
-        corsConfig.addAllowedMethod("*"); // Allow all HTTP methods
+        corsConfig.addAllowedMethod("*");
         corsConfig.addAllowedHeader("*"); // Allow all headers
         corsConfig.setMaxAge(3600L); // Max age of the CORS options request
 
