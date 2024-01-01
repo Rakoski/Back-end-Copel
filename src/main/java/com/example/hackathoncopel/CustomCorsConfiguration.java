@@ -12,7 +12,7 @@ public class CustomCorsConfiguration {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("*"); // Allow requests from any origin
+        corsConfig.addAllowedOrigin("*"); 
         corsConfig.addAllowedMethod("*"); // Allow all HTTP methods
         corsConfig.addAllowedHeader("*"); // Allow all headers
         corsConfig.setMaxAge(3600L); // Max age of the CORS options request
