@@ -15,11 +15,10 @@ public class CustomCorsConfiguration {
         corsConfig.addAllowedOrigin("*"); 
         corsConfig.addAllowedMethod("*");
         corsConfig.addAllowedHeader("*"); 
-        corsConfig.setMaxAge(3600L); // Max age of the CORS options request
+        corsConfig.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig); // Apply CORS rules to all endpoints
-
+        source.registerCorsConfiguration("/**", corsConfig); 
         return new CorsFilter(source);
     }
 }
