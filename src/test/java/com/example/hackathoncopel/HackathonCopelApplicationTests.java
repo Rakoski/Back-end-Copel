@@ -8,6 +8,7 @@ class HackathonCopelApplicationTests {
 
     @Test
     void contextLoads() {
+        tests are for nerds lol
     }
 
 }
